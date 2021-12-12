@@ -1,12 +1,12 @@
 {
-  "prefix":"!",
-  "token":"OTEwOTkwMTk3Mjg0NTY5MDg4.YZa3vA.64n1gmFvj6Q9LSN3vVgQlTY6VJ0",
-  "adminrol": "899272973972819978",
-  "kurucu":"903709189422071839",
-  "basvurkategori":"910999396454395954",
-    "onayred":"904734628433248257",
-  "yetkililog":"904734628433248257",
-  "everyoneid":"898864598076248074",
-  "yetkilirolid":"909332267367800872",
-  "sunucuid":"898864598076248074"
+  "prefix":"prefix",
+  "token":"token",
+  "adminrol": "admin rolü idsi",
+  "kurucu":"kurucu rolü idsi",
+  "basvurkategori":"kategori idsi",
+    "onayred":"onay red log kanalı",
+  "yetkililog":"log kanalı",
+  "everyoneid":"everyone rol idsi",
+  "yetkilirolid":"yetkilinin rolünün idsi",
+  "sunucuid":"sunucunun idsi"
 }
