@@ -1,2 +1,2 @@
-# bavur-bot
-Gweep Creative Başvuru Sistemi botu
+# başvuru-botu
+Ewing35 Başvuru Sistemi botu
