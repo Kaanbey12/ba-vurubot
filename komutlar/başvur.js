@@ -3,16 +3,14 @@ const disbut = require("discord-buttons");
 const db = require('quick.db');
 const ayar = require('../ayarlar.json')
 exports.run = async (client, message, args) => { 
-    message.delete()
+    
 	const basvurdata = await db.get(`basvurbilgi`);
 	if(basvurdata) return message.reply(`Başvurular geçici olarak durdurulmuştur.`);
 	
 	const bandata = await db.get(`ban.${message.author.id}`)
 	if(bandata) return message.reply("Başvurulardan banlısın");
 		
-  let category = message.guild.channels.cache.get(ayar.basvurkategori);
-            
-  message.guild.channels.create(`${message.author.username}-başvur`, {
+  let category = message.guild.channels.cache.get(ayar.basvurkategori);  message.guild.channels.create(`${message.author.username}-başvurusu`, {
     parent: category,
     permissionOverwrites: [
         {id: ayar.everyoneid, deny: [('VIEW_CHANNEL'), ('SEND_MESSAGES')]},
@@ -23,11 +21,12 @@ exports.run = async (client, message, args) => {
     
   const sorular = [
     '**İsmini Ve Yaşını Oğrenebilirmiyim?** isim/yaş',
-    '**Günde Kaç Saat Aktifsiniz?** 1/24 saat',
-    '**Başka Sunucuda Yetkili Oldunuz Mu?** evet/hayır',
-    '**Discord Platformunda Kaç Senedir Bulunuyorsunuz?** yıl',
-    '**Üyelere hangi konuda destek vermeyi planlıyorunuz?** discord-destek / kod-destek',
-    '**Neden Fly?** <cevabınız>'
+    '**Günde 3 Saatten Fazla Aktif Olabilecek misin ?** Günde .. Saat Aktifim',
+    '**Günde Ne Kadar İnvite Kasabilirsin ??** .... Tane Kasabilirim',
+    '**Discord Profilini Çevrimiçini Açabilir Misin?** evet/hayır',
+    '**Hangi Yetki İstiyorsun-Neden?** Staff/Chat Sorumlusu',
+    '**Bionuza .gg/nightcode Yazabilir Misin??** Evet Yazarım / Hayır Yazamam',
+    '**Neden Night?** <uzunca Açıkla>'
   ]
   let sayac = 0
   
@@ -73,14 +72,15 @@ exports.run = async (client, message, args) => {
     .setColor('BLUE')
     .addField('Başvuran Hakkında',[
       `**İsim ve Yaş: **\t\t${collected.map(m => m.content).slice(0,1)}`,
-      `**Günlük Aktiflik: **\t\t${collected.map(m => m.content).slice(1,2)}`,
-      `**Daha önceden Bilgisi var m?: **\t\t${collected.map(m => m.content).slice(2,3)}`,
-      `**Kac Yıldır DC kullanıyor: **\t\t${collected.map(m => m.content).slice(3,4)}`,
-	  `**Üyelere hangi konuda destek vermeyi planlıyor: **\t\t${collected.map(m => m.content).slice(4,5)}`,
-      `**Neden Ewing: **\t\t${collected.map(m => m.content).slice(5,6)}`
+      `**Günde 3 Saatten Fazla Aktif Olabilecek mi ?: **\t\t${collected.map(m => m.content).slice(1,2)}`,
+      `**Günde Ne Kadar İnvite Kasabilirsin?: **\t\t${collected.map(m => m.content).slice(2,3)}`,
+      `**Discord Profilini Çevrimiçi Bırakabilir mi?: **\t\t${collected.map(m => m.content).slice(3,4)}`,
+	  `**Hangi Yetki İstiyorsun Neden?: **\t\t${collected.map(m => m.content).slice(4,5)}`,
+          `**Bionuza .gg/nightcode Yazabilir Misin ??: **\t\t${collected.map(m => m.content).slice(5,6)}`,
+      `**Neden Biz ?: **\t\t${collected.map(m => m.content).slice(6,7)}`
     ])
     .setTimestamp()
-    .setFooter('Developed by Ewing', message.guild.iconURL());
+    .setFooter('Night Yetkili Başvuru Sistemi', message.guild.iconURL());
     client.channels.cache.get(ayar.yetkililog).send({
 		buttons: [onybuton, redbuton],
 	    embed: log}).then(async m => {
